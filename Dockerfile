@@ -5,12 +5,10 @@ RUN apt-get install -y libgeos-dev
 
 COPY ./requirements.txt /app/
 RUN pip install -r /app/requirements.txt
-RUN pip install --no-cache --upgrade pip && \
-    pip install --no-cache notebook jupyterlab
 
 # create user with a home directory
-ARG NB_USER
-ARG NB_UID
+ARG NB_USER="nb_user"
+ARG NB_UID="1000"
 ENV USER ${NB_USER}
 ENV HOME /home/${NB_USER}
 
@@ -20,4 +18,4 @@ RUN adduser --disabled-password \
     ${NB_USER}
 WORKDIR ${HOME}
 USER ${USER}
-COPY . /home/${NB_USER}
+COPY ./jornadas_cilifo.ipynb /home/${NB_USER}/

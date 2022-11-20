@@ -90,6 +90,7 @@ psutil==5.9.4
 ptyprocess==0.7.0
 pure-eval==0.2.2
 pycparser==2.21
+pyepsg==0.4.0
 pygeos==0.13
 Pygments==2.13.0
 pyHanko==0.15.1
