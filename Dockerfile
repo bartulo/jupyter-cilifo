@@ -1,5 +1,11 @@
 FROM python:3.10-bullseye
 # install the notebook package
+RUN apt-get update 
+RUN apt-get install -y libgeos-dev 
+ENV STATIC_URL /static
+ENV STATIC_PATH /var/www/app/static
+COPY . /app
+RUN pip install -r /app/requirements.txt
 RUN pip install --no-cache --upgrade pip && \
     pip install --no-cache notebook jupyterlab
 
