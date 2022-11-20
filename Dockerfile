@@ -1,4 +1,4 @@
-FROM ubuntu:jammy
+FROM python:3.10-bullseye
 # install the notebook package
 RUN pip install --no-cache --upgrade pip && \
     pip install --no-cache notebook jupyterlab
