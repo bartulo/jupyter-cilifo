@@ -1,10 +1,9 @@
-FROM python:3.10-bullseye
+FROM python:3.8-bullseye
 # install the notebook package
 RUN apt-get update 
 RUN apt-get install -y libgeos-dev 
-ENV STATIC_URL /static
-ENV STATIC_PATH /var/www/app/static
-COPY . /app
+
+COPY ./requirements.txt /app/
 RUN pip install -r /app/requirements.txt
 RUN pip install --no-cache --upgrade pip && \
     pip install --no-cache notebook jupyterlab
@@ -21,3 +20,4 @@ RUN adduser --disabled-password \
     ${NB_USER}
 WORKDIR ${HOME}
 USER ${USER}
+COPY . /home/${NB_USER}
