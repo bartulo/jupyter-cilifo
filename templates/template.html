@@ -1,0 +1,93 @@
+<html>
+<head>
+<style>
+    @page {
+        size: a4 portrait;
+        @frame header {           /* Static Frame */
+            -pdf-frame-content: header;
+            left: 80pt; width: 180pt; top: 60pt; height: 240pt;
+        }
+        @frame municipio {           /* Static Frame */
+            -pdf-frame-content: municipio;
+            left: 80pt; width: 210pt; top: 140pt; height: 20pt;
+        }
+        @frame provincia {           /* Static Frame */
+            -pdf-frame-content: provincia;
+            left: 290pt; width: 210pt; top: 140pt; height: 20pt;
+        }
+        @frame lat {           /* Static Frame */
+            -pdf-frame-content: lat;
+            left: 80pt; width: 140pt; top: 156pt; height: 20pt;
+        }
+        @frame long {           /* Static Frame */
+            -pdf-frame-content: long;
+            left: 220pt; width: 140pt; top: 156pt; height: 20pt;
+        }
+        @frame alt {           /* Static Frame */
+            -pdf-frame-content: alt;
+            left: 360pt; width: 140pt; top: 156pt; height: 20pt;
+        }
+        @frame border {           /* Static Frame */
+            -pdf-frame-content: recuadro;
+            left: 80pt; width: 420pt; top: 60pt; height: 70pt;
+            -pdf-frame-border: 1;
+        }
+        @frame border {           /* Static Frame */
+            -pdf-frame-content: recuadro;
+            left: 80pt; width: 420pt; top: 140pt; height: 16pt;
+            -pdf-frame-border: 1;
+        }
+        @frame border {           /* Static Frame */
+            -pdf-frame-content: recuadro;
+            left: 80pt; width: 420pt; top: 156pt; height: 16pt;
+            -pdf-frame-border: 1;
+        }
+        @frame topografico {           /* Static Frame */
+            left: 80pt; width: 420pt; top: 172pt; height: 356pt;
+        }
+        @frame border {           /* Static Frame */
+            -pdf-frame-content: recuadro;
+            left: 80pt; width: 420pt; top: 172pt; height: 356pt;
+            -pdf-frame-border: 1;
+        }
+        @frame meteo_pasado {           /* Static Frame */
+            left: 80pt; width: 420pt; top: 538pt; height: 226pt;
+        }
+        @frame border {           /* Static Frame */
+            -pdf-frame-content: recuadro;
+            left: 80pt; width: 420pt; top: 528pt; height: 226pt;
+            -pdf-frame-border: 1;
+        }
+        @frame footer_frame {           /* Another static Frame */
+            -pdf-frame-content: footer_content;
+            left: 50pt; width: 512pt; top: 772pt; height: 20pt;
+        }
+    }
+</style>
+</head>
+
+<body>
+    <!-- Content for Static Frame 'header_frame' -->
+    <div id="header" style="background:darkblue; text-align:center; padding-top:10px; color:white; font-size:14px; line-height:27px">
+      INFORME METEOROLÓGICO</br>
+      {{ municipio[:32] }}</br>
+      {{ hoy }}
+    </div>
+    <div style="font-size:14px; padding-top:3px; text-align:center" id="municipio"><b>Municipio: </b>{{ municipio[:30] }}</div>
+    <div style="font-size:14px; padding-top:3px; text-align:center" id="provincia"><b>Provincia: </b>{{ provincia[:30] }}</div>
+    <div style="font-size:14px; padding-top:3px; text-align:center" id="lat"><b>Lat: </b>{{ "%0.2f" | format(lat) }}</div>
+    <div style="font-size:14px; padding-top:3px; text-align:center" id="long"><b>Long: </b>{{ "%0.2f" | format(lng) }}</div>
+    <div style="font-size:14px; padding-top:3px; text-align:center" id="alt"><b>Altitud: </b>{{ "%0.2f" | format(alt) }}</div>
+    <div><img style="width:600px" src="topografico/topografico.png" /></div>
+    <pdf:nextframe>
+    <div>
+      <p style="text-align:center; font-size:14px">Datos meteo últimos 15 días</p>
+      <div><img style="width:600px" src="meteo_15dias/meteo_15dias.png" /></div>
+    </div>
+    <!-- Content for Static Frame 'footer_frame' -->
+    <div style="text-align:center" id="footer_content"><pdf:pagenumber></div>
+
+    <!-- HTML Content -->
+</body>
+</html>
+
