@@ -18,4 +18,4 @@ RUN adduser --disabled-password \
     ${NB_USER}
 WORKDIR ${HOME}
 USER ${USER}
-COPY ./jornadas_cilifo.ipynb /home/${NB_USER}/
+COPY . /home/${NB_USER}/
