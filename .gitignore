@@ -1,3 +1,6 @@
-wetterzentrale/
-topografico/
-meteo_15dias/
+wetterzentrale/*.png
+topografico/*.png
+meteo_15dias/*.png
+meteo_aemet/*.png
+meteograma/*.png
+radiosondeos/*.png
