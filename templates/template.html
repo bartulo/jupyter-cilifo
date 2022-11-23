@@ -154,7 +154,11 @@
             -pdf-frame-border: 1;
         }
         @frame meteograma {           /* Static Frame */
-            left: 80pt; width: 420pt; top: 172pt; height: 596pt;
+            left: 80pt; width: 420pt; top: 172pt; height: 318pt;
+            -pdf-frame-border: 1;
+        }
+        @frame meteograma {           /* Static Frame */
+            left: 80pt; width: 420pt; top: 490pt; height: 298pt;
             -pdf-frame-border: 1;
         }
     }
@@ -197,8 +201,12 @@
       <img style="width:250px" src="radiosondeo/radiosondeo_15.png" />
     </div>
     <pdf:nexttemplate name="third_page">
-    <div style="display:block; text-align:center; padding-top:20px">
-      <img style="width:1200px" src="meteograma/meteograma.png" />
+    <div style="display:block; text-align:center; padding-top:5px">
+      <img style="width:300px" src="meteograma/meteograma.png" />
+    </div>
+    <pdf:nextframe>
+    <div style="display:block; text-align:center; padding-top:5px">
+      <img style=width:290px" src="meteograma/meteograma2.png" />
     </div>
 
 </body>
