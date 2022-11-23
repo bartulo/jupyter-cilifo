@@ -4,7 +4,6 @@ RUN apt-get update
 RUN apt-get install -y libgeos-dev 
 
 COPY ./requirements.txt /app/
-RUN pip install -r /app/requirements.txt
 
 # create user with a home directory
 ARG NB_USER="nb_user"
@@ -18,4 +17,5 @@ RUN adduser --disabled-password \
     ${NB_USER}
 WORKDIR ${HOME}
 USER ${USER}
+RUN pip install -r /app/requirements.txt
 COPY . /home/${NB_USER}/
