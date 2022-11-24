@@ -1,7 +1,7 @@
 FROM python:3.8-bullseye
 # install the notebook package
-#RUN apt-get update 
-#RUN apt-get install -y libgeos-dev 
+RUN apt-get update 
+RUN apt-get install -y libgeos-dev 
 
 # create user with a home directory
 #ARG NB_USER
