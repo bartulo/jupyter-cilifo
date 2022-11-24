@@ -18,4 +18,5 @@ ENV HOME=/tmp
 
 COPY ./requirements.txt /app/
 RUN pip install -r /app/requirements.txt
-COPY . /home/${NB_USER}/
+WORKDIR ${HOME}
+COPY . /${HOME}/
