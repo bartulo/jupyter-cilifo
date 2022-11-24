@@ -16,6 +16,6 @@ RUN apt-get install -y libgeos-dev
 #WORKDIR ${HOME}
 ENV HOME=/tmp
 
-COPY . /app/
+COPY . /tmp/
 RUN pip install -r /app/requirements.txt
-WORKDIR /app
+WORKDIR /tmp
