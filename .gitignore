@@ -4,3 +4,4 @@ meteo_15dias/*.png
 meteo_aemet/*.png
 meteograma/*.png
 radiosondeos/*.png
+historico/*

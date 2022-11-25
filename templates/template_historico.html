@@ -1,0 +1,27 @@
+<html>
+<head>
+<style>
+    @page {
+        size: a4 portrait;
+        @frame header {           /* Static Frame */
+            -pdf-frame-content: header;
+            left: 80pt; width: 180pt; top: 60pt; height: 240pt;
+        }
+        @frame header {           /* Static Frame */
+            left: 80pt; width: 180pt; top: 300pt; height: 240pt;
+        }
+    }
+ 
+</style>
+</head>
+
+<body>
+    <!-- Content for Static Frame 'header_frame' -->
+    <div id="header" style="background:darkblue; text-align:center; padding-top:10px; color:white; font-size:14px; line-height:27px">
+      INFORME METEOROLÓGICO</br>
+      {{ historico[:32] }}</br>
+    </div>
+    <div>algo</div>
+</body>
+</html>
+

@@ -1,5 +1,47 @@
 import math
 
+def dirviento_viento(d, a):
+    for i, viento in enumerate(d['windArrows']):
+          #ax[1].scatter(i, velviento_10m[i], marker=fleviento[i], color='g') # para que aparezcan las flechas sobre la curva
+        a.scatter(i, d['windgusts_10m'].max() + 0.5, marker=viento, s=150 ,color='r') # para que aparezcan en linea en la parte de arriba de la gráfica
+    a.set_ylabel('Dirección del Viento', multialignment='center')
+    a.grid(axis='both', color='k', linestyle='--', linewidth=0.3)
+    # a.set_ylim(0.5,l)
+    # a.set_yticks(range(0, len(model)+1))
+
+    a.plot(d['windgusts_10m'], 'red')
+    a.plot(d['windspeed_10m'], 'orange', label='Viento 10m ')
+    a.set_xticks(range(0, len(d['hora']), 3))
+    a.set_xticklabels(list(d['hora'])[0::3])
+    a.set_ylabel('Velocidad del Viento (km/h)', multialignment='center')
+    a.grid(axis='both', color='k', linestyle='--', linewidth=0.3)
+    a.legend(loc = 'upper right')
+    
+def temp_simple(d, a):
+    ax2 = a.twinx()
+    a.plot(d['temperature_2m'], 'r', label='Temperatura ')
+    a.plot(d['dewpoint_2m'], 'g', linewidth=0.8, label='Punto de rocío ')
+    ax2.plot(d['relativehumidity_2m'], 'b', label='Humedad relativa')
+    ax2.legend(loc='upper right')
+    a.set_ylabel('Temperatura (ºC)', multialignment='center')
+    a.set_ylim(-10, 40)
+    a.set_xticks(range(0, len(d['hora']), 3))
+    a.set_xticklabels(list(d['hora'])[0::3])
+    ax2.set_ylabel('Humedad relativa (%)', multialignment='center')
+    ax2.set_ylim(0,100)
+    a.grid(axis='both', color='k', linestyle='--', linewidth=0.3)
+
+def hcfm_plot_simple(d, a): #He cambiado el nombre de la función porque le habías dado el mismo que el objeto lista hcfm
+    ax3 = a.twinx()
+    a.plot(d['hcfm'], 'maroon', label='HCFM ')
+    ax3.plot(d['probIg'], 'lawngreen', label='Prob Ig ')
+    a.set_ylabel('Humedad Combustible Fino Muerto (%)', multialignment='center')
+    a.set_ylim(0, 30)
+    ax3.set_ylabel('Probabilidad de ignición (%)', multialignment='center')
+    ax3.set_ylim(0,100)
+    a.grid(axis='both', color='k', linestyle='--', linewidth=0.3)
+    a.legend(loc = 'upper right')
+
 def parse_long( data ):
     deg = int(data[:2])
     dec = ((float(data[2:4]) * 1000 / 6) + float(data[4:6]) * 10 / 6) / 10000
