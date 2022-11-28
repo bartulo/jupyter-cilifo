@@ -4,11 +4,31 @@
     @page {
         size: a4 portrait;
         @frame header {           /* Static Frame */
-            -pdf-frame-content: header;
             left: 80pt; width: 180pt; top: 60pt; height: 240pt;
         }
+        @frame superficies {           /* Static Frame */
+            left: 260pt; width: 240pt; top: 60pt; height: 80pt;
+        }
+        @frame mapa {           /* Static Frame */
+            left: 80pt; width: 452pt; top: 130pt; height: 340pt;
+              -pdf-frame-border: 1;
+        }
+        @frame wetterzentrale {           /* Static Frame */
+            left: 80pt; width: 452pt; top: 470pt; height: 240pt;
+              -pdf-frame-border: 1;
+        }
+    }
+    @page second_page {
+        size: a4 portrait;
         @frame header {           /* Static Frame */
-            left: 80pt; width: 180pt; top: 300pt; height: 240pt;
+            left: 80pt; width: 180pt; top: 60pt; height: 240pt;
+        }
+        @frame superficies {           /* Static Frame */
+            left: 260pt; width: 240pt; top: 60pt; height: 80pt;
+        }
+        @frame meteograma {           /* Static Frame */
+            left: 80pt; width: 452pt; top: 130pt; height: 340pt;
+              -pdf-frame-border: 1;
         }
     }
  
@@ -17,11 +37,49 @@
 
 <body>
     <!-- Content for Static Frame 'header_frame' -->
+    {% for h in historico %}
     <div id="header" style="background:darkblue; text-align:center; padding-top:10px; color:white; font-size:14px; line-height:27px">
       INFORME METEOROLÓGICO</br>
-      {{ historico[:32] }}</br>
+      {{ h.Municipio[:32] }}</br>
+      {{ h.FECHA_INC }}
     </div>
-    <div>algo</div>
+    <pdf:nextframe>
+    <div id="header" style="text-align: right; padding-top:6px; padding-left: 10px; font-size:11px; line-height:22px">
+      Superficie arbolada: {{ '%0.2f' | format(h.SUP_ARBOLA) | float }} ha</br>
+      Superficie matorral: {{ '%0.2f' | format(h.SUP_MATORR) | float }} ha</br>
+      Superficie pastizal: {{ '%0.2f' | format(h.SUP_PASTIZ) | float }} ha</br>
+      Total: {{ '%0.2f' | format(h.TOTAL) | float }} ha
+    </div>
+    <pdf:nextframe>
+    <div style="text-align:center">
+      <img style="width: 400pt; text-align:center; vertical-align: middle" src="historico/mapa/mapa_{{ h.CODIGO }}.png" />
+    </div>
+    <pdf:nextframe>
+    <div>
+      <img style="width: 220pt; vertical-align: middle" src="historico/wetterzentrale/mapa_500_{{ h.CODIGO }}.png" />
+      <img style="width: 220pt; text-align:center; vertical-align: middle" src="historico/wetterzentrale/mapa_850_{{ h.CODIGO }}.png" />
+    </div>
+    <pdf:nexttemplate name="second_page">
+    <pdf:nextframe>
+    <div id="header" style="background:darkblue; text-align:center; padding-top:10px; color:white; font-size:14px; line-height:27px">
+      INFORME METEOROLÓGICO</br>
+      {{ h.Municipio[:32] }}</br>
+      {{ h.FECHA_INC }}
+    </div>
+    <pdf:nextframe>
+    <div id="header" style="text-align: right; padding-top:6px; padding-left: 10px; font-size:11px; line-height:22px">
+      Superficie arbolada: {{ '%0.2f' | format(h.SUP_ARBOLA) | float }} ha</br>
+      Superficie matorral: {{ '%0.2f' | format(h.SUP_MATORR) | float }} ha</br>
+      Superficie pastizal: {{ '%0.2f' | format(h.SUP_PASTIZ) | float }} ha</br>
+      Total: {{ '%0.2f' | format(h.TOTAL) | float }} ha
+    </div>
+    <pdf:nextframe>
+    <div style="text-align:center">
+      <img style="width: 400pt; text-align:center; vertical-align: middle" src="historico/meteo/meteo_{{ h.CODIGO }}.png" />
+    </div>
+    <pdf:nexttemplate>
+    <pdf:nextframe>
+    {% endfor %}
 </body>
 </html>
 
